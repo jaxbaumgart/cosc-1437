@@ -3,8 +3,9 @@ package assignment2;
 
 public class board {
     public static void main(String[] args) {
+
         // Creates 10x10 "board".
-        String [][] board = new String[10][10];
+        String[][] board = new String[10][10];
 
         // Fills board with periods.
         for (int i = 0; i <= 9; i++) {
@@ -38,7 +39,7 @@ public class board {
         // Prints board.
         for (int i = 0; i <= 9; i++) {
             for (int j = 0; j <= 9; j++) {
-                System.out.print(board[i][j] + " ");
+                System.out.print(board[i][j] + "  ");
             }
             System.out.println();
         }

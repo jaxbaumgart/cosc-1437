@@ -6,6 +6,9 @@ public class sign {
     public static void main(String[] args) {
     // Scanner declaration.
     Scanner in = new Scanner(System.in);
+    // Ask user for year.
+    System.out.print("What year were you born (YYYY)? >> ");
+    int userYear = in.nextInt();
     // Ask user for month.
     System.out.print("What month were you born (1-12)? >> ");
     int userMonth = in.nextInt();
@@ -19,6 +22,9 @@ public class sign {
     // Output zodiac sign.
     String ZodiacOutput = ZodiacSign(userMonth, userDay);
     System.out.println(ZodiacOutput);
+    // Output Chinese zodiac sign.
+    String ChineseZodiacOutput = ChineseZodiacSign(userYear);
+    System.out.println(ChineseZodiacOutput);
     }
     
     public static String Birthstone(int Month) {
@@ -138,5 +144,47 @@ public class sign {
             }
         }
         return "Your zodiac sign is " + Zodiac + ".";
+    }
+
+    public static String ChineseZodiacSign(int year) {
+        String animal = "";
+        int remainder = (year - 1900) % 12;
+        if (remainder == 0) {
+            animal = "Rat";
+        }
+        if (remainder == 1) {
+            animal = "Ox";
+        }
+        if (remainder == 2) {
+            animal = "Tiger";
+        }
+        if (remainder == 3) {
+            animal = "Rabbit";
+        }
+        if (remainder == 4) {
+            animal = "Dragon";
+        }
+        if (remainder == 5) {
+            animal = "Snake";
+        }
+        if (remainder == 6) {
+            animal = "Horse";
+        }
+        if (remainder == 7) {
+            animal = "Goat";
+        }
+        if (remainder == 8) {
+            animal = "Monkey";
+        }
+        if (remainder == 9) {
+            animal = "Rooster";
+        }
+        if (remainder == 10) {
+            animal = "Dog";
+        }
+        if (remainder == 11) {
+            animal = "Pig";
+        }
+        return "Your Chinese zodiac animal is " + animal + ".";
     }
 }
