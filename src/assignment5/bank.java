@@ -22,11 +22,12 @@ public class bank {
         int selection = 11;
         String menu;
 
+        // Main loop.
         while (selection != 0) {
-            // Main loop.
+            // Main menu.
             System.out.println("====================================================");
-            System.out.println("| Bank of Eastfield System Menu");
-            System.out.println("| Make a Selection");
+            System.out.println("| Bank Of Eastfield System Menu");
+            System.out.println("| Make A Selection");
             System.out.println("| ");
             System.out.println("| 1 Show Bank Information");
             System.out.println("| 2 Print All Checking Accounts");
@@ -42,7 +43,7 @@ public class bank {
             System.out.print("| Selection >> ");
             selection = in.nextInt();
             System.out.println();
-
+            // Show bank info.
             if (selection == 1) {
                 System.out.println("====================================================");
                 System.out.println("| Show Bank Information");
@@ -50,6 +51,7 @@ public class bank {
                 System.out.println("| Total Bank Balance " + Check.get(0).BankBalance);
                 System.out.println("| Total Bank Customers " + Check.get(0).NumberCustomers);
                 System.out.println("====================================================");
+            // Print all checking accounts.
             } else if (selection == 2) {
                 // TODO: Fix table alignment.
                 System.out.println("====================================================");
@@ -62,6 +64,7 @@ public class bank {
                     System.out.println ("| " + i + "\t" + Check.get(i).GetLName() + ", " + Check.get(i).GetFName() + "\t" + Check.get(i).getCheckingBalance() + "\t" + Check.get(i).CustomerTransactions);
                 }
                 System.out.println("====================================================");
+            // Deposit money.
             } else if (selection == 3) {
                 System.out.println("====================================================");
                 System.out.println("| Make a Deposit");
@@ -75,6 +78,7 @@ public class bank {
                 System.out.println("| Deposit Successful");
                 System.out.println("| " + Check.get(recNum).GetLName() + ", " + Check.get(recNum).GetFName() + " now has $" + Check.get(recNum).getCheckingBalance());
                 System.out.println("====================================================");
+            // Withdraw money.
             } else if (selection == 4) {
                 System.out.println("====================================================");
                 System.out.println("| Make a Withdraw");
@@ -89,6 +93,7 @@ public class bank {
                 System.out.println("| Amount Withdrawn is $" + withdrawAmount);
                 System.out.println("| " + Check.get(recNum).GetLName() + ", " + Check.get(recNum).GetFName() + " now has $" + Check.get(recNum).getCheckingBalance());
                 System.out.println("====================================================");
+            // Print all loan accounts.
             } else if (selection == 5) {
                 // TODO: Fix table alignment.
                 System.out.println("====================================================");
@@ -101,6 +106,7 @@ public class bank {
                     System.out.println ("| " + i + "\t" + Loan.get(i).GetLName() + ", " + Loan.get(i).GetFName() + "\t" + Loan.get(i).getLoanBalance() + "\t" + Loan.get(i).CustomerTransactions);
                 }
                 System.out.println("====================================================");
+            // Make new loan.
             } else if (selection == 6) {
                 System.out.println("====================================================");
                 System.out.println("| Make New Loan");
@@ -114,6 +120,7 @@ public class bank {
                 System.out.println("| Loan Creation Successful");
                 System.out.println("| " + Loan.get(recNum).GetLName() + ", " + Loan.get(recNum).GetFName() + " loan balance is now $" + Loan.get(recNum).getLoanBalance());
                 System.out.println("====================================================");
+            // Make loan payment.
             } else if (selection == 7) {
                 System.out.println("====================================================");
                 System.out.println("| Make Loan Payment");
@@ -128,21 +135,26 @@ public class bank {
                 System.out.println("| Payment Amount is $" + paymentAmount);
                 System.out.println("| " + Loan.get(recNum).GetLName() + ", " + Loan.get(recNum).GetFName() + " loan balance is now $" + Loan.get(recNum).getLoanBalance());
                 System.out.println("====================================================");
+            // Add customer.
             } else if (selection == 8) {
-                // TODO: Option 8 EC
+                // TODO: Option 8 EC - Add Customer
+            // Delete customer.
             } else if (selection == 9) {
-                // TODO: Option 9 EC
+                // TODO: Option 9 EC - Delete Customer
+            // Exit system.
             } else if (selection == 0) {
                 System.out.println("====================================================");
                 System.out.println("| System Exit Successful");
                 System.out.println("====================================================");
+            // Prints error message if selection invalid.
             } else {
                 System.out.println("====================================================");
                 System.out.println("| Invalid Selection");
                 System.out.println("| ");
-                System.out.println("| Please Make Another Selection");
+                System.out.println("| Please Make A Valid Selection");
                 System.out.println("====================================================");
                 System.out.println();
+            // Waits for user before returning to main menu.
             }
             if (selection >= 1 && selection <= 9) {
                 System.out.print("| Press Enter to Return to System Menu >> ");
@@ -182,6 +194,8 @@ class CheckingAccount extends Customer {
     }
 
     // Methods
+
+   // Getters
     public double getCheckingBalance() {
         return CheckingBalance;
     }
@@ -194,13 +208,16 @@ class CheckingAccount extends Customer {
         return LName;
     }
 
+    // Adds deposit to customer account, total bank balance, transaction up by 1.
     void Deposit(double Amount) {
         CheckingBalance += Amount;
         CustomerTransactions++;
         BankBalance += Amount;
     }
 
+    // Deducts deposit from customer account, total bank balance, transaction up by 1.
     void Withdraw(double Amount) {
+        // If customer does not have sufficient balance, $25 fee and notifies user.
         if (CheckingBalance - Amount < 0.00) {
             CheckingBalance -= 25;
             System.out.println("| Overdraft fee of $25.0 Assessed");
@@ -229,6 +246,8 @@ class LoanAccount extends Customer {
     }
 
     // Methods
+
+    // Getters
     public double getLoanBalance() {
         return LoanBalance;
     }
@@ -241,14 +260,17 @@ class LoanAccount extends Customer {
         return LName;
     }
 
+    // Adds loan to customer account, total bank balance, transaction up by 1.
     void MakeLoan(double Amount) {
         LoanBalance += Amount * 1.25;
         CustomerTransactions++;
         BankBalance -= Amount * 1.25;
     }
 
+    // Adds dedcuts loan from customer account, total bank balance, transaction up by 1.
     void MakePayment(double Amount) {
         LoanBalance -= Amount;
+        // If loan balance zero, notify user.
         if (LoanBalance <= 0) {
             System.out.println("| Loan fully paid off. No further payments required.");
         }
