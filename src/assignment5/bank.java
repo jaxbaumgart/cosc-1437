@@ -17,6 +17,8 @@ public class bank {
         // Scanner
         Scanner in = new Scanner(System.in);
         Scanner next = new Scanner(System.in);
+        Scanner sscanner = new Scanner(System.in);
+        Scanner iscanner = new Scanner(System.in);
 
         // Selection variable.
         int selection = 11;
@@ -137,10 +139,120 @@ public class bank {
                 System.out.println("====================================================");
             // Add customer.
             } else if (selection == 8) {
-                // TODO: Option 8 EC - Add Customer
+                int innerSelection = 0;
+                System.out.println("====================================================");
+                System.out.println("| Add Customer");
+                System.out.println("| Make A Selection");
+                System.out.println("| ");
+                System.out.println("| 1 Checking Customer");
+                System.out.println("| 2 Loan Customer");
+                System.out.println("====================================================");
+                System.out.print("| Selection >> ");
+                innerSelection = in.nextInt();
+                System.out.println();
+                if (innerSelection == 1) {
+                    System.out.println("====================================================");
+                    System.out.println("| Add Checking Customer");
+                    System.out.println("| ");
+                    System.out.print("| Enter Last Name >> ");
+                    String lastName = sscanner.nextLine();
+                    System.out.print("| Enter First Name >> ");
+                    String firstName = sscanner.nextLine();
+                    System.out.print("| Enter Email >> ");
+                    String email = sscanner.nextLine();
+                    System.out.print("| Enter Opening Amount >> ");
+                    double openingAmount = sscanner.nextDouble();
+                    System.out.println("| ");
+                    Check.add(new CheckingAccount(lastName, firstName, email, openingAmount));
+                    System.out.println("| Account Creation Successful");
+                    System.out.println("| Checking Record Number " + (Check.size() - 1));
+                    System.out.println("| Customer " + Check.get(Check.size() - 1).GetLName() + ", " + Check.get(Check.size() - 1).GetFName());
+                    System.out.println("| Email " + Check.get(Check.size() - 1).GetEmail());
+                    System.out.println("| Balance $" + Check.get(Check.size() - 1).getCheckingBalance());
+                    System.out.println("====================================================");
+                }
+                if (innerSelection == 2) {
+                    System.out.println("====================================================");
+                    System.out.println("| Add Loan Customer");
+                    System.out.println("| ");
+                    System.out.print("| Enter Last Name >> ");
+                    String lastName = sscanner.nextLine();
+                    System.out.print("| Enter First Name >> ");
+                    String firstName = sscanner.nextLine();
+                    System.out.print("| Enter Email >> ");
+                    String email = sscanner.nextLine();
+                    System.out.print("| Enter Opening Amount >> ");
+                    double openingAmount = sscanner.nextDouble();
+                    System.out.println("| ");
+                    Loan.add(new LoanAccount(lastName, firstName, email, openingAmount));
+                    System.out.println("| Account Creation Successful");
+                    System.out.println("| Account Details Below");
+                    System.out.println("| Loan Record Number " + (Loan.size() - 1) + " for customer " + Loan.get(Loan.size() - 1).GetLName() + ", " + Loan.get(Loan.size() - 1).GetFName() + " with email " + Loan.get(Loan.size() - 1).GetEmail() + " and balance $" + Loan.get(Loan.size() - 1).getLoanBalance());
+                    System.out.println("====================================================");
+                }
             // Delete customer.
             } else if (selection == 9) {
-                // TODO: Option 9 EC - Delete Customer
+                int innerSelection = 0;
+                System.out.println("====================================================");
+                System.out.println("| Delete Customer");
+                System.out.println("| Make A Selection");
+                System.out.println("| ");
+                System.out.println("| 1 Checking Customer");
+                System.out.println("| 2 Loan Customer");
+                System.out.println("====================================================");
+                System.out.print("| Selection >> ");
+                innerSelection = in.nextInt();
+                System.out.println();
+                if (innerSelection == 1) {
+                    System.out.println("====================================================");
+                    System.out.println("| Delete Checking Customer");
+                    System.out.println("| ");
+                    System.out.print("| Enter Record Number >> ");
+                    int recNum = iscanner.nextInt();
+                    System.out.println("| ");
+                    System.out.println("| Account Information");
+                    System.out.println("| Checking Record Number " + recNum);
+                    System.out.println("| Customer " + Check.get(recNum).GetLName() + ", " + Check.get(recNum).GetFName());
+                    System.out.println("| Email " + Check.get(recNum).GetEmail());
+                    System.out.println("| Balance $" + Check.get(recNum).getCheckingBalance());
+                    System.out.println("| ");
+                    System.out.print("| Confirm Account Deletion Y/N >> ");
+                    String delete = sscanner.nextLine().toUpperCase();
+                    if (delete.equals("Y")) {
+                        Check.remove(recNum);
+                        System.out.println("| ");
+                        System.out.println("| Account Deletion Successful");
+                    } else {
+                        System.out.println("| ");
+                        System.out.println("| Account Deletion Failed");
+                    }
+                    System.out.println("====================================================");
+                }
+                if (innerSelection == 2) {
+                    System.out.println("====================================================");
+                    System.out.println("| Delete Loan Customer");
+                    System.out.println("| ");
+                    System.out.print("| Enter Record Number >> ");
+                    int recNum = iscanner.nextInt();
+                    System.out.println("| ");
+                    System.out.println("| Account Information");
+                    System.out.println("| Loan Record Number " + recNum);
+                    System.out.println("| Customer " + Loan.get(recNum).GetLName() + ", " + Loan.get(recNum).GetFName());
+                    System.out.println("| Email " + Loan.get(recNum).GetEmail());
+                    System.out.println("| Balance $" + Loan.get(recNum).getLoanBalance());
+                    System.out.println("| ");
+                    System.out.print("| Confirm Account Deletion Y/N >> ");
+                    String delete = sscanner.nextLine().toUpperCase();
+                    if (delete.equals("Y")) {
+                        Loan.remove(recNum);
+                        System.out.println("| ");
+                        System.out.println("| Account Deletion Successful");
+                    } else {
+                        System.out.println("| ");
+                        System.out.println("| Account Deletion Failed");
+                    }
+                    System.out.println("====================================================");
+                }
             // Exit system.
             } else if (selection == 0) {
                 System.out.println("====================================================");
@@ -208,6 +320,10 @@ class CheckingAccount extends Customer {
         return LName;
     }
 
+    public String GetEmail() {
+        return Email;
+    }
+
     // Adds deposit to customer account, total bank balance, transaction up by 1.
     void Deposit(double Amount) {
         CheckingBalance += Amount;
@@ -260,6 +376,10 @@ class LoanAccount extends Customer {
         return LName;
     }
 
+    public String GetEmail() {
+        return Email;
+    }
+
     // Adds loan to customer account, total bank balance, transaction up by 1.
     void MakeLoan(double Amount) {
         LoanBalance += Amount * 1.25;
@@ -267,7 +387,7 @@ class LoanAccount extends Customer {
         BankBalance -= Amount * 1.25;
     }
 
-    // Adds dedcuts loan from customer account, total bank balance, transaction up by 1.
+    // Adds deducts loan from customer account, total bank balance, transaction up by 1.
     void MakePayment(double Amount) {
         LoanBalance -= Amount;
         // If loan balance zero, notify user.
