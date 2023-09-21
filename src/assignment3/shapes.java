@@ -2,6 +2,7 @@
 package assignment3;
 import java.util.*;
 
+
 public class shapes {
     public static void main(String[] args) {
         // Declare scanner.

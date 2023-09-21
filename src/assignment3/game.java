@@ -1,4 +1,4 @@
-// Assignment 3b TODO
+// Assignment 3b
 package assignment3;
 
 public class game {
