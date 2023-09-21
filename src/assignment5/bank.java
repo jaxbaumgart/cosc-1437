@@ -54,7 +54,6 @@ public class bank {
                 System.out.println("====================================================");
             // Print all checking accounts.
             } else if (selection == 2) {
-                // TODO: Fix table alignment.
                 System.out.println("====================================================");
                 System.out.println("| Show All Checking Accounts");
                 System.out.println("| ");
@@ -77,7 +76,7 @@ public class bank {
                 in.nextLine();
                 Check.get(recNum).Deposit(depositAmount);
                 System.out.println("| ");
-                System.out.println("| Deposit Successful");
+                System.out.println("| !! Deposit Successful !!");
                 System.out.println("| Amount Deposited is $" + depositAmount);
                 System.out.println("| " + Check.get(recNum).GetLName() + ", " + Check.get(recNum).GetFName() + " now has $" + Check.get(recNum).getCheckingBalance());
                 System.out.println("====================================================");
@@ -92,14 +91,13 @@ public class bank {
                 double withdrawAmount = in.nextDouble();
                 in.nextLine();
                 System.out.println("| ");
-                System.out.println("| Withdraw Successful");
+                System.out.println("| !! Withdraw Successful !!");
                 Check.get(recNum).Withdraw(withdrawAmount);
                 System.out.println("| Amount Withdrawn is $" + withdrawAmount);
                 System.out.println("| " + Check.get(recNum).GetLName() + ", " + Check.get(recNum).GetFName() + " now has $" + Check.get(recNum).getCheckingBalance());
                 System.out.println("====================================================");
             // Print all loan accounts.
             } else if (selection == 5) {
-                // TODO: Fix table alignment.
                 System.out.println("====================================================");
                 System.out.println("| Show All Loan Accounts");
                 System.out.println("| ");
@@ -122,7 +120,7 @@ public class bank {
                 in.nextLine();
                 Loan.get(recNum).MakeLoan(loanAmount);
                 System.out.println("| ");
-                System.out.println("| Loan Creation Successful");
+                System.out.println("| !! Loan Creation Successful !!");
                 System.out.println("| Loan Amount is $" + loanAmount + " with an interest fee of $" + loanAmount * 0.25);
                 System.out.println("| " + Loan.get(recNum).GetLName() + ", " + Loan.get(recNum).GetFName() + " loan balance is now $" + Loan.get(recNum).getLoanBalance());
                 System.out.println("====================================================");
@@ -137,7 +135,7 @@ public class bank {
                 double paymentAmount = in.nextDouble();
                 in.nextLine();
                 System.out.println("| ");
-                System.out.println("| Payment Successful");
+                System.out.println("| !! Payment Successful !!");
                 Loan.get(recNum).MakePayment(paymentAmount);
                 System.out.println("| Payment Amount is $" + paymentAmount);
                 System.out.println("| " + Loan.get(recNum).GetLName() + ", " + Loan.get(recNum).GetFName() + " loan balance is now $" + Loan.get(recNum).getLoanBalance());
@@ -157,6 +155,7 @@ public class bank {
                 in.nextLine();
                 System.out.println("====================================================");
                 System.out.println();
+                // For checking customer.
                 if (innerSelection == 1) {
                     System.out.println("====================================================");
                     System.out.println("| Add Checking Customer");
@@ -172,13 +171,14 @@ public class bank {
                     in.nextLine();
                     System.out.println("| ");
                     Check.add(new CheckingAccount(lastName, firstName, email, openingAmount));
-                    System.out.println("| Account Creation Successful");
+                    System.out.println("| !! Account Creation Successful !!");
                     System.out.println("| Checking Record Number " + (Check.size() - 1));
                     System.out.println("| Customer " + Check.get(Check.size() - 1).GetLName() + ", " + Check.get(Check.size() - 1).GetFName());
                     System.out.println("| Email " + Check.get(Check.size() - 1).GetEmail());
                     System.out.println("| Balance $" + Check.get(Check.size() - 1).getCheckingBalance());
                     System.out.println("====================================================");
                 }
+                // For loan customer.
                 if (innerSelection == 2) {
                     System.out.println("====================================================");
                     System.out.println("| Add Loan Customer");
@@ -194,7 +194,7 @@ public class bank {
                     in.nextLine();
                     System.out.println("| ");
                     Loan.add(new LoanAccount(lastName, firstName, email, openingAmount));
-                    System.out.println("| Account Creation Successful");
+                    System.out.println("| !! Account Creation Successful !!");
                     System.out.println("| Loan Record Number " + (Loan.size() - 1));
                     System.out.println("| Customer " + Loan.get(Loan.size() - 1).GetLName() + ", " + Loan.get(Loan.size() - 1).GetFName());
                     System.out.println("| Email " + Loan.get(Loan.size() - 1).GetEmail());
@@ -216,6 +216,7 @@ public class bank {
                 in.nextLine();
                 System.out.println("====================================================");
                 System.out.println();
+                // For checking customer.
                 if (innerSelection == 1) {
                     System.out.println("====================================================");
                     System.out.println("| Delete Checking Customer");
@@ -235,13 +236,14 @@ public class bank {
                     if (delete.equals("Y")) {
                         Check.remove(recNum);
                         System.out.println("| ");
-                        System.out.println("| Account Deletion Successful");
+                        System.out.println("| !! Account Deletion Successful !!");
                     } else {
                         System.out.println("| ");
-                        System.out.println("| Account Deletion Failed");
+                        System.out.println("| !! Account Deletion Failed !!");
                     }
                     System.out.println("====================================================");
                 }
+                // For loan customer.
                 if (innerSelection == 2) {
                     System.out.println("====================================================");
                     System.out.println("| Delete Loan Customer");
@@ -261,10 +263,10 @@ public class bank {
                     if (delete.equals("Y")) {
                         Loan.remove(recNum);
                         System.out.println("| ");
-                        System.out.println("| Account Deletion Successful");
+                        System.out.println("| !! Account Deletion Successful !!");
                     } else {
                         System.out.println("| ");
-                        System.out.println("| Account Deletion Failed");
+                        System.out.println("| !! Account Deletion Failed !!");
                     }
                     System.out.println("====================================================");
                 }
@@ -272,7 +274,7 @@ public class bank {
             } else if (selection == 0) {
                 System.out.println("====================================================");
                 System.out.println("| ");
-                System.out.println("| System Exit Successful");
+                System.out.println("| !! System Exit Successful !!");
                 System.out.println("| ");
                 System.out.println("====================================================");
             // Prints error message if selection invalid.
@@ -280,12 +282,12 @@ public class bank {
                 System.out.println("====================================================");
                 System.out.println("| Invalid Selection");
                 System.out.println("| ");
-                System.out.println("| Please Make A Valid Selection");
+                System.out.println("| !! Please Make A Valid Selection !!");
                 System.out.println("====================================================");
                 System.out.println();
                 System.out.println();
-            // Waits for user before returning to main menu.
             }
+            // Waits for user before returning to main menu.
             if (selection >= 1 && selection <= 9) {
                 System.out.print("| Press Enter to Return to System Menu >> ");
                 in.nextLine();
